@@ -15,17 +15,20 @@ void setup() {
 
 //setting the draw method
 void draw() {
+  
+  mouseBackground();
   //drawing the line grid
   drawGrid();
   //drawing the repeated shape
-  for ( int row = 0; row <720; row +=160) {
-    for (int count = 0; count <1280; count +=80) {
+  for ( int row = 0; row < 720; row += 160) {
+    for (int count = 0; count < 1280; count += 80) {
       drawShapeOne(count+20, row+20, 40, 60);
     }
   }
   
   //printing student name and number to the screen
   mousePressed();
+  
   //drawing the external frame
   frame();
   //method with return type
@@ -34,7 +37,7 @@ void draw() {
 
 //setting the drawGrid method
 void drawGrid() {
-  for ( int i = boxSize; i <=width; i+=boxSize) {
+  for (int i = boxSize; i <= width; i += boxSize) {
     line (i, 0, i, height);
     line (0, i, width, i);
   }
@@ -54,7 +57,6 @@ void screenShot() {
 //print name and student number to screen
 void mousePressed() {
   if (mouseButton == LEFT) {
-
     textSize(80);
     fill (255);
     text("SHAUN WALSH", 0, 80);
@@ -79,8 +81,9 @@ void drawShapeOne(int xC, int yC, int rectSize, int ellSize) {
 
 //changing background colours depending on mouse location
 void mouseBackground() {
-  if (mouseX < 320)
-    fill (pink);
+  if (mouseX < 320) {
+    fill(pink);
+  }
   rect(0, 0, width/4, height);
 }
 
