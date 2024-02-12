@@ -1,9 +1,9 @@
 //defining the colour pallete and variables
-int pink = #F21D92;
-int purple = #E031EB;
-int black = #060126;
-int blue = #030085;
-int teal = #1BF2B5;
+color pink = #F21D92;
+color purple = #E031EB;
+color black = #060126;
+color blue = #030085;
+color teal = #1BF2B5;
 int boxSize = 80;
 float angle;
 
@@ -135,9 +135,10 @@ void mouseProduct()
 {
   float a = mouseX;
   float b = mouseY;
-  textSize(40);
+  textSize(35);
+  textAlign(RIGHT);
   fill(pink);
-  text ("The product of " + a + " and " + b + " is " + product (a, b), 550, 40);
+  text ("The product of " + a + " and " + b + " is " + product (a, b), 1280, 40);
 }
 
 float product (float num1, float num2) {
@@ -158,3 +159,12 @@ void spinningRect() {
    
   } 
 }
+
+/*//randomising colours
+void randomColourNumber()  {
+  int colourNumber = int (random (0,5));
+  if (colourNumber == 0) {
+    
+}*/
+  
+  
