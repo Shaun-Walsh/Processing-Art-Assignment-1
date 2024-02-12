@@ -1,4 +1,4 @@
-//defining the colour pallete
+//defining the colour pallete and variables
 int pink = #F21D92;
 int purple = #E031EB;
 int black = #060126;
@@ -15,8 +15,6 @@ void setup() {
 
 //setting the draw method
 void draw() {
-  
-  mouseBackground();
   //drawing the line grid
   drawGrid();
   //drawing the repeated shape
@@ -67,16 +65,16 @@ void mousePressed() {
 }
 
 //doing some art
-void drawShapeOne(int xC, int yC, int rectSize, int ellSize) {
+void drawShapeOne(int xCoord, int yCoord, int rectSize, int ellSize) {
   noStroke();
   fill(pink);
-  ellipse(xC+20, yC+20, ellSize, ellSize);
+  ellipse(xCoord+20, yCoord+20, ellSize, ellSize);
   fill(purple);
-  rect(xC, yC, rectSize, rectSize);
+  rect(xCoord, yCoord, rectSize, rectSize);
   fill(black);
-  triangle(xC, yC+20, xC+20, yC+40, xC+40, yC+20);
+  triangle(xCoord, yCoord+20, xCoord+20, yCoord+40, xCoord+40, yCoord+20);
   fill(blue);
-  triangle(xC, yC+20, xC+20, yC, xC+40, yC+20);
+  triangle(xCoord, yCoord+20, xCoord+20, yCoord, xCoord+40, yCoord+20);
 }
 
 //changing background colours depending on mouse location
@@ -91,19 +89,19 @@ void mouseBackground() {
 void frame() {
   int i = 0;
   int j = 0;
-  int frameXA = 0;
-  int frameYA= 0;
-  int frameXB= 0;
-  int frameYB= 0;
+  int frameXCoordA = 0;
+  int frameYCoordA= 0;
+  int frameXCoordB= 0;
+  int frameYCoordB= 0;
   while (i < 2) {
     fill(black);
-    rect(frameXA, frameYA, 1280, 80);
-    frameYA += 640;
+    rect(frameXCoordA, frameYCoordA, 1280, 80);
+    frameYCoordA += 640;
     i++;
     while (j < 2) {
       fill(black);
-      rect (frameXB, frameYB, 80, 720);
-      frameXB +=1200;
+      rect (frameXCoordB, frameYCoordB, 80, 720);
+      frameXCoordB +=1200;
       j++;
     }
   }
