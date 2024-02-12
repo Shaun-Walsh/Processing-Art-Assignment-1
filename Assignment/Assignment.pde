@@ -15,8 +15,9 @@ void setup() {
 
 //setting the draw method
 void draw() {
+  mouseBackground();
   //drawing the line grid
-  drawGrid();
+   drawGrid();
   //drawing the repeated shape
   for ( int row = 0; row < 720; row += 160) {
     for (int count = 0; count < 1280; count += 80) {
@@ -33,8 +34,34 @@ void draw() {
   mouseProduct();
 }
 
+//changing background colours depending on mouse location
+void mouseBackground() {
+  noStroke();
+  if ((mouseX >80 && mouseX<360) && (mouseY >boxSize && mouseY <640)){
+    fill(pink);
+    rect(boxSize, boxSize, boxSize*3.5, boxSize*8); 
+  }
+  else if ((mouseX >=360 && mouseX <680)  && (mouseY >boxSize && mouseY <640)) {
+   fill(purple);
+   rect(boxSize*4.5, boxSize, boxSize*3.5, boxSize*8); 
+  }
+   else if ((mouseX >=680 && mouseX <920)  && (mouseY >boxSize && mouseY <640)) {
+   fill(black);
+   rect(boxSize*8, boxSize, boxSize*3.5, boxSize*8); 
+  }
+  else if ((mouseX >=920 && mouseX <1160)  && (mouseY >boxSize && mouseY <640)) {
+   fill(blue);
+   rect(boxSize*11.5, boxSize, boxSize*3.5, boxSize*8); 
+  }
+ else {
+ fill(teal);
+ rect(boxSize, boxSize, boxSize*14, boxSize*8); 
+ }
+}
+
 //setting the drawGrid method
 void drawGrid() {
+  stroke(2);
   for (int i = boxSize; i <= width; i += boxSize) {
     line (i, 0, i, height);
     line (0, i, width, i);
@@ -77,13 +104,6 @@ void drawShapeOne(int xCoord, int yCoord, int rectSize, int ellSize) {
   triangle(xCoord, yCoord+20, xCoord+20, yCoord, xCoord+40, yCoord+20);
 }
 
-//changing background colours depending on mouse location
-void mouseBackground() {
-  if (mouseX < 320) {
-    fill(pink);
-  }
-  rect(0, 0, width/4, height);
-}
 
 //drawing a frame around the outer border
 void frame() {
