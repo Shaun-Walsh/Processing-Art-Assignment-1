@@ -5,12 +5,14 @@ int black = #060126;
 int blue = #030085;
 int teal = #1BF2B5;
 int boxSize = 80;
+float angle;
 
 //setting the display and size
 void setup() {
   surface.setLocation(0, 0);
   size(1280, 720);
   background(teal);
+  angle = 0;
 }
 
 //setting the draw method
@@ -32,6 +34,7 @@ void draw() {
   frame();
   //method with return type
   mouseProduct();
+  spinningRect();
 }
 
 //changing background colours depending on mouse location
@@ -79,9 +82,9 @@ void screenShot() {
   save("img/shaunwalsh.png");
 }
 
-//print name and student number to screen
+/*//print name and student number to screen
 void mousePressed() {
-  if (mouseButton == LEFT) {
+ /* if (mouseButton == LEFT) {
     textSize(80);
     fill (255);
     text("SHAUN WALSH", 0, 80);
@@ -89,7 +92,7 @@ void mousePressed() {
     fill (255);
     text("20005831", 960, 720);
   }
-}
+}*/
 
 //doing some art
 void drawShapeOne(int xCoord, int yCoord, int rectSize, int ellSize) {
@@ -139,4 +142,19 @@ void mouseProduct()
 
 float product (float num1, float num2) {
   return num1 * num2 ;
+}
+
+//drawing a ghost target
+void spinningRect() {
+  if ((mouseButton == LEFT && (mouseX<320 || mouseX >720))) {
+    translate(640, 360);
+    rotate(radians(angle));
+    fill(teal,10);
+    rectMode(CENTER);
+    rect(0,0, boxSize, boxSize);
+    rectMode(CORNER);
+    rect(80,80, boxSize, boxSize);
+    angle += 1;
+   
+  } 
 }
