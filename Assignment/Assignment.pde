@@ -31,6 +31,9 @@ void draw() {
     }
   }
 
+  //drawing the random squares
+  shrinkingSquares(80);
+  
   //drawing the external frame
   frame();
 
@@ -178,6 +181,16 @@ void stringNumber()  {
 /*//randomising colours
  void randomColourNumber()  {
  int colourNumber = int (random (0,5));
- if (colourNumber == 0) {
+ if (colourNumber == 0) 
  
  }*/
+ 
+ //deceasing squares
+ void shrinkingSquares(int fixedYCoord)  {
+ int randomX = int (random (80,1200));
+ if (keyPressed) {
+   if (key == ' ')
+   fill(pink);
+ rect(randomX,fixedYCoord,boxSize, boxSize);
+ }
+ }
