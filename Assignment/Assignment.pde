@@ -17,52 +17,58 @@ void setup() {
 
 //setting the draw method
 void draw() {
+  
+  //using the mouse to change the grid background
   mouseBackground();
+  
   //drawing the line grid
-   drawGrid();
+  drawGrid();
+  
   //drawing the repeated shape
   for ( int row = 0; row < 720; row += 160) {
     for (int count = 0; count < 1280; count += 80) {
       drawShapeOne(count+20, row+20, 40, 60);
     }
   }
-  
-  //printing student name and number to the screen
-  mousePressed();
-  
+
   //drawing the external frame
   frame();
+
+  //add student number to screen
+  stringName();
+  
+  //add student number to screen
+  stringNumber();
+  
   //method with return type
   mouseProduct();
+
+  //method prodcuing ghost target
   spinningRect();
 }
 
-//changing background colours depending on mouse location
+//method for changing changing background colours depending on mouse location use a nest if/else if, else statement
 void mouseBackground() {
   noStroke();
-  if ((mouseX >80 && mouseX<360) && (mouseY >boxSize && mouseY <640)){
+  if ((mouseX >80 && mouseX<360) && (mouseY >boxSize && mouseY <640)) {
     fill(pink);
-    rect(boxSize, boxSize, boxSize*3.5, boxSize*8); 
+    rect(boxSize, boxSize, boxSize*3.5, boxSize*8);
+  } else if ((mouseX >=360 && mouseX <680)  && (mouseY >boxSize && mouseY <640)) {
+    fill(purple);
+    rect(boxSize*4.5, boxSize, boxSize*3.5, boxSize*8);
+  } else if ((mouseX >=680 && mouseX <920)  && (mouseY >boxSize && mouseY <640)) {
+    fill(black);
+    rect(boxSize*8, boxSize, boxSize*3.5, boxSize*8);
+  } else if ((mouseX >=920 && mouseX <1160)  && (mouseY >boxSize && mouseY <640)) {
+    fill(blue);
+    rect(boxSize*11.5, boxSize, boxSize*3.5, boxSize*8);
+  } else {
+    fill(teal);
+    rect(boxSize, boxSize, boxSize*14, boxSize*8);
   }
-  else if ((mouseX >=360 && mouseX <680)  && (mouseY >boxSize && mouseY <640)) {
-   fill(purple);
-   rect(boxSize*4.5, boxSize, boxSize*3.5, boxSize*8); 
-  }
-   else if ((mouseX >=680 && mouseX <920)  && (mouseY >boxSize && mouseY <640)) {
-   fill(black);
-   rect(boxSize*8, boxSize, boxSize*3.5, boxSize*8); 
-  }
-  else if ((mouseX >=920 && mouseX <1160)  && (mouseY >boxSize && mouseY <640)) {
-   fill(blue);
-   rect(boxSize*11.5, boxSize, boxSize*3.5, boxSize*8); 
-  }
- else {
- fill(teal);
- rect(boxSize, boxSize, boxSize*14, boxSize*8); 
- }
 }
 
-//setting the drawGrid method
+//method for drawing a line grid with a for loop
 void drawGrid() {
   stroke(2);
   for (int i = boxSize; i <= width; i += boxSize) {
@@ -71,7 +77,7 @@ void drawGrid() {
   }
 }
 
-//save screenshot and method
+//method to save a screenshot and save it in its own img folder using a mouse method
 void mouseClicked() {
   if (mouseButton == RIGHT) {
     screenShot();
@@ -82,19 +88,9 @@ void screenShot() {
   save("img/shaunwalsh.png");
 }
 
-/*//print name and student number to screen
-void mousePressed() {
- /* if (mouseButton == LEFT) {
-    textSize(80);
-    fill (255);
-    text("SHAUN WALSH", 0, 80);
-    textSize(80);
-    fill (255);
-    text("20005831", 960, 720);
-  }
-}*/
 
-//doing some art
+
+//drawing a shape for the grid
 void drawShapeOne(int xCoord, int yCoord, int rectSize, int ellSize) {
   noStroke();
   fill(pink);
@@ -108,7 +104,7 @@ void drawShapeOne(int xCoord, int yCoord, int rectSize, int ellSize) {
 }
 
 
-//drawing a frame around the outer border
+// method for drawing a frame around the outer border using a while loop
 void frame() {
   int i = 0;
   int j = 0;
@@ -130,7 +126,7 @@ void frame() {
   }
 }
 
-//method with return type
+//method with return type showing the x and y coordinates of the mouse on the screeen and multiplying them together 
 void mouseProduct()
 {
   float a = mouseX;
@@ -145,26 +141,43 @@ float product (float num1, float num2) {
   return num1 * num2 ;
 }
 
-//drawing a ghost target
+//method for drawing a ghost target in the back when the mouse is in a particularly position on the screen and the left button is pushed using an if statement and mouse method
 void spinningRect() {
   if ((mouseButton == LEFT && (mouseX<320 || mouseX >720))) {
     translate(640, 360);
     rotate(radians(angle));
-    fill(teal,10);
+    fill(teal, 10);
     rectMode(CENTER);
-    rect(0,0, boxSize, boxSize);
+    rect(0, 0, boxSize, boxSize);
     rectMode(CORNER);
-    rect(80,80, boxSize, boxSize);
+    rect(80, 80, boxSize, boxSize);
     angle += 1;
-   
-  } 
+  }
+}
+
+//method for adding student name to the screen
+void stringName()  {
+  String message = "shaun walsh";
+  fill(255, 255, 255);
+  textAlign (LEFT);
+  textSize(40);
+  text(message.toUpperCase(), 80, 40);
+  
+}
+
+//method for adding student number to the screen
+void stringNumber()  {
+  String message = "2005831";
+  fill(255, 255, 255);
+  textAlign (LEFT);
+  textSize(40);
+  text(message, 80, 700);
+  
 }
 
 /*//randomising colours
-void randomColourNumber()  {
-  int colourNumber = int (random (0,5));
-  if (colourNumber == 0) {
-    
-}*/
-  
-  
+ void randomColourNumber()  {
+ int colourNumber = int (random (0,5));
+ if (colourNumber == 0) {
+ 
+ }*/
