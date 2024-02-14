@@ -6,68 +6,72 @@ color blue = #030085;
 color teal = #1BF2B5;
 int boxSize = 80;
 float angle;
+boolean drawShapes = false;
+boolean backgroundArt = false
 
 //setting the display and size
 void setup() {
   surface.setLocation(0, 0);
   size(1280, 720);
-  background(teal);
   angle = 0;
+  background(teal);
 }
 
 //setting the draw method
 void draw() {
-  
   //using the mouse to change the grid background
   mouseBackground();
-  
   //drawing the line grid
   drawGrid();
-  
+
   //drawing the repeated shape
   for ( int row = 0; row < 720; row += 160) {
     for (int count = 0; count < 1280; count += 80) {
       drawShapeOne(count+20, row+20, 40, 60);
     }
   }
-
-  //drawing the random squares
-  shrinkingSquares(80);
-  
+  if (keyPressed && key == ' ') {
+    randomShapes(80);
+  }
   //drawing the external frame
   frame();
 
   //add student number to screen
   stringName();
-  
+
   //add student number to screen
   stringNumber();
-  
+
   //method with return type
   mouseProduct();
-
-  //method prodcuing ghost target
-  spinningRect();
 }
 
-//method for changing changing background colours depending on mouse location use a nest if/else if, else statement
+//method for changing changing background colours depending on mouse location use a nested if/else if, else statement
+//void mouseMoved () {
+//  mouseBackground();
+//}
 void mouseBackground() {
   noStroke();
   if ((mouseX >80 && mouseX<360) && (mouseY >boxSize && mouseY <640)) {
-    fill(pink);
-    rect(boxSize, boxSize, boxSize*3.5, boxSize*8);
+    //fill(pink);
+    //rect(boxSize, boxSize, boxSize*3.5, boxSize*7);
+    background(pink);
   } else if ((mouseX >=360 && mouseX <680)  && (mouseY >boxSize && mouseY <640)) {
-    fill(purple);
-    rect(boxSize*4.5, boxSize, boxSize*3.5, boxSize*8);
+    //fill(purple);
+    //rect(boxSize*4.5, boxSize, boxSize*3.5, boxSize*7);
+    background(purple);
   } else if ((mouseX >=680 && mouseX <920)  && (mouseY >boxSize && mouseY <640)) {
-    fill(black);
-    rect(boxSize*8, boxSize, boxSize*3.5, boxSize*8);
+    //fill(black);
+    //rect(boxSize*8, boxSize, boxSize*3.5, boxSize*7);
+    background(black);
   } else if ((mouseX >=920 && mouseX <1160)  && (mouseY >boxSize && mouseY <640)) {
-    fill(blue);
-    rect(boxSize*11.5, boxSize, boxSize*3.5, boxSize*8);
+    //fill(blue);
+    //rect(boxSize*11.5, boxSize, boxSize*3.5, boxSize*7);
+    background(blue);
   } else {
-    fill(teal);
-    rect(boxSize, boxSize, boxSize*14, boxSize*8);
+    //rect(boxSize, boxSize, boxSize*14, boxSize*7);
+    //fill(teal);
+    background(teal);
   }
 }
 
@@ -129,7 +133,7 @@ void frame() {
   }
 }
 
-//method with return type showing the x and y coordinates of the mouse on the screeen and multiplying them together 
+//method with return type showing the x and y coordinates of the mouse on the screeen and multiplying them together
 void mouseProduct()
 {
   float a = mouseX;
@@ -144,9 +148,13 @@ float product (float num1, float num2) {
   return num1 * num2 ;
 }
 
+void mouseWheel() {
+  spinningRect();
+}
+
 //method for drawing a ghost target in the back when the mouse is in a particularly position on the screen and the left button is pushed using an if statement and mouse method
 void spinningRect() {
-  if ((mouseButton == LEFT && (mouseX<320 || mouseX >720))) {
+  if (mouseX<340 || mouseX >920) {
     translate(640, 360);
     rotate(radians(angle));
     fill(teal, 10);
@@ -159,38 +167,51 @@ void spinningRect() {
 }
 
 //method for adding student name to the screen
-void stringName()  {
+void stringName() {
   String message = "shaun walsh";
   fill(255, 255, 255);
   textAlign (LEFT);
   textSize(40);
   text(message.toUpperCase(), 80, 40);
-  
 }
 
 //method for adding student number to the screen
-void stringNumber()  {
+void stringNumber() {
   String message = "2005831";
   fill(255, 255, 255);
   textAlign (LEFT);
   textSize(40);
   text(message, 80, 700);
-  
 }
 
-/*//randomising colours
- void randomColourNumber()  {
- int colourNumber = int (random (0,5));
- if (colourNumber == 0) 
- 
- }*/
- 
- //deceasing squares
- void shrinkingSquares(int fixedYCoord)  {
- int randomX = int (random (80,1200));
- if (keyPressed) {
-   if (key == ' ')
-   fill(pink);
- rect(randomX,fixedYCoord,boxSize, boxSize);
- }
- }
+
+void keyPressed() {
+  // If spacebar is pressed, toggle the drawShapes variable
+  if (key == ' ') {
+    drawShapes = !drawShapes;
+  }
+}
+
+void randomShapes(int fixedYCoord) {
+  int randomXSquare = int(random(80, 1120));
+  int randomXCircle = int(random(120, 1240));
+  int randomXCircle2 = int(random(120, 1120));
+  int randomXSquare2 = int(random(80, 1200));
+
+  fill(pink);
+  rect(randomXSquare, fixedYCoord, boxSize, boxSize);
+  fill(purple);
+  ellipse(randomXCircle, fixedYCoord+200, boxSize, boxSize);
+  fill(black);
+  ellipse(randomXCircle2, fixedYCoord+360, boxSize, boxSize);
+  fill(blue);
+  rect(randomXSquare2, fixedYCoord+480, boxSize, boxSize);
+}
+
+void mouseDragged() {
+  freeArt();
+}
+
+void freeArt() {
+  rect(mouseX, mouseY, boxSize/2, boxSize/2);
+}
