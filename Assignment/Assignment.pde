@@ -1,6 +1,6 @@
 /*
 * Student Name: Shaun Walsh
- * Student Number: 20011462
+ * Student Number: 20005831
  * Description: This program generates a gird with some simple art shapes; gridlines; a changing border colour based on mouse positions;
  an interactive element where the user can draw on the canvas and clear it; generate a target; and place shapes at random x postions further filling the grid.
  */
