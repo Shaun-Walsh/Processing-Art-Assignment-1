@@ -36,7 +36,7 @@ void draw() {
   if (keyPressed && key == 'c') {
     clearCanvas();
   }
-  
+
   //Drawing the line grid
   drawGrid();
 
@@ -46,27 +46,26 @@ void draw() {
       drawShapeOne(count+20, row+20, 40, 60);
     }
   }
-  
+
   //Calling a method that places 4 predefined shapes at random x coordinates on the grid using the space key
   if (keyPressed && key == ' ') {
     randomShapes(80);
   }
-  
+
   //Calling a method to change the frame colour using the mouse position
   mouseColourFrame();
-  
+
   //Calling a method to add the student name to the screen
   stringName();
 
   //Calling a method add student number to screen
   stringNumber();
-  
+
   //Calling a method to show how to erase drawings on the screen
   stringCleared();
 
   //Calling a method to dispaly the product of the mouseX and mouseY coordinates
   mouseProduct();
-  
 }
 
 //Method for changing changing the colour of the frame based on the X position of the mouse using a nested if/else if/else statement
@@ -161,7 +160,7 @@ float product (float num1, float num2) {
   return num1 * num2 ;
 }
 
-//Method call for the spinningRect method using the mouse wheel 
+//Method call for the spinningRect method using the mouse wheel
 void mouseWheel() {
   spinningRect();
 }
@@ -191,14 +190,14 @@ void stringName() {
 
 //Method for adding student number to the screen using a string
 void stringNumber() {
-  String message = "2005831";
+  String message = "20005831";
   fill(255, 255, 255);
   textAlign (LEFT);
   textSize(40);
   text(message, 80, 700);
 }
 
-//Method for adding an instruction to the user on how to reset the screen 
+//Method for adding an instruction to the user on how to reset the screen
 void stringCleared() {
   String message = "press c to reset";
   fill(pink);
